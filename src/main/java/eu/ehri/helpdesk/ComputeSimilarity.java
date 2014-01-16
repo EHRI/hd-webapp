@@ -90,6 +90,6 @@ public class ComputeSimilarity {
 		}
 		
 		return relevance;		
-//		return null;
+
 	}
 }
