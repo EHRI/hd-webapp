@@ -2,35 +2,28 @@ package eu.ehri.helpdesk;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 
 public class ComputeFeatureOccurrences {
 
-	static GetProperties property = new GetProperties();
-	final static String modelFolder = property.getModelFolder();
-	final File featuresFile = new File("features.txt");
+	InputStream features = getClass()
+			.getResourceAsStream("/Model/features.txt");
 
-	
-	
 	public HashMap<String, Integer> computeFeatOccurrences(List<String> tagged) {
-		
+
 		// Read files features.txt and store the features in a list
 		List<String> featuresList = new ArrayList<String>();
 		String currentLine;
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(modelFolder
-					+ featuresFile));
+			br = new BufferedReader(new InputStreamReader(features));
 			while ((currentLine = br.readLine()) != null) {
 				featuresList.add(currentLine);
-				// System.out.println(currentLine);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -55,6 +48,10 @@ public class ComputeFeatureOccurrences {
 
 		HashMap<String, Integer> featureOccurrence = new HashMap<String, Integer>();
 
+	//TO DO
+	//Implement here synonyms dictionary used for feature extraction from data
+	//during model building
+		
 		for (int i = 0; i < keywords.size(); i++) {
 			if (featureOccurrence.containsKey(keywords.get(i))) {
 				int value = featureOccurrence.get(keywords.get(i));
@@ -64,12 +61,6 @@ public class ComputeFeatureOccurrences {
 			}
 		}
 
-		/*
-		 * Iterator it = featureOccurrence.entrySet().iterator(); while
-		 * (it.hasNext()) { Map.Entry pairs = (Map.Entry) it.next();
-		 * System.out.println(pairs.getKey() + "  " + pairs.getValue());
-		 * it.remove(); }
-		 */
 		return featureOccurrence;
 	}
 
