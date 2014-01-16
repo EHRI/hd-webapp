@@ -36,11 +36,9 @@ public class Workflow {
 				.computeTF(featureOcurrences);
 
 		ComputeSimilarity compSimilarity = new ComputeSimilarity();
-//		HashMap<String, Double> similarity = ComputeSimilarity
-//				.computeSimilarity(userQueryTF);
-
-		List<String> similarity = ComputeSimilarity.computeSimilarity(userQueryTF);
-//		return null;
+		List<String> similarity = compSimilarity
+				.computeSimilarity(userQueryTF);
+		
 		return similarity;
 	}
 
