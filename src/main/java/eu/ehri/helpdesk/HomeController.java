@@ -83,24 +83,4 @@ public class HomeController {
 		return new ModelAndView("input", "command", new GetInput());
 	}
 
-	/*
-	@RequestMapping("/build")
-	public ModelAndView startBuilding(HttpServletRequest request,
-			HttpServletResponse response, Object command, BindException errors)
-			throws Exception {
-		return new ModelAndView("build");
-	}
-
-	@RequestMapping("/process")
-	public ModelAndView buildModel(HttpServletRequest request,
-			HttpServletResponse response, Object command, BindException errors)
-			throws Exception {
-		if (request.getParameter("start") != null) {
-			System.out.println("Building vector space!!");
-			WorkflowModelling buildingProcess = new WorkflowModelling();
-			List<String> list = buildingProcess.buildModel();
-		}
-		return new ModelAndView("finish");
-	}
-	*/
 }
