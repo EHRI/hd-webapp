@@ -1,21 +1,17 @@
 package eu.ehri.helpdesk;
 
-import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class CosineSimilarity {
 
 	public static double computeCosine(HashMap<String, Double> vector1,
 			HashMap<String, Double> vector2) {
-		// vector 1 is the e-mail and vector 2 the representation of the
+		// vector 1 is the user query and vector 2 the representation of the
 		// institution
 
 		double numerator = 0;
 		double v1denominator = 0;
 		double v2denominator = 0;
-		double denominator = 0;
 		double cosine = 0;
 
 		for (String key : vector1.keySet()) {
@@ -33,8 +29,6 @@ public class CosineSimilarity {
 				numerator = numerator + (vector1.get(key) * vector2.get(key));
 			}
 		}
-		denominator = (Math.sqrt(v1denominator) * Math.sqrt(v2denominator));
-
 		if ((v1denominator * v2denominator) == 0) {
 			cosine = 0;
 		} else {
