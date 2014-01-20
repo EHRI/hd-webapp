@@ -1,16 +1,11 @@
 package eu.ehri.helpdesk;
 
 import java.io.IOException;
-import java.net.BindException;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.annolab.tt4j.TreeTaggerException;
 import org.slf4j.Logger;
