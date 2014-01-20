@@ -12,8 +12,8 @@ public class ComputeSimilarity {
 
 	// Read vector of each institution
 	// Add new institutions here
-	InputStream niod = getClass().getResourceAsStream("/Model/wiener.tfidf");
-	InputStream wiener = getClass().getResourceAsStream("/Model/niod.tfidf");
+	InputStream wiener = getClass().getResourceAsStream("/Model/wiener.tfidf");
+	InputStream niod = getClass().getResourceAsStream("/Model/niod.tfidf");
 	InputStream yadvashem = getClass().getResourceAsStream(
 			"/Model/yadvashem.tfidf");
 	InputStream jewishmuseumprag = getClass().getResourceAsStream(
