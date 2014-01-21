@@ -1,23 +1,31 @@
 package eu.ehri.helpdesk;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
- // Only relevant property is the TreeTagger Folder
+/*
+ * Only tree tagger is necessary
+ * 
+ */
 
 public class GetProperties {
 
+	InputStream propertiesFile = getClass().getResourceAsStream("/config.properties");
 	public String getTreeTaggerFolder(){
+
+		
 		Properties prop = new Properties();	
 		
 		try {
-			prop.load(getClass().getResourceAsStream("config.properties"));
+//			prop.load(getClass().getResourceAsStream("config.properties"));
+			prop.load(propertiesFile);
 		}catch (IOException ex) {
 			ex.printStackTrace();
 	    }
-		final String DESCRIPTIONS_FOLDER = prop.getProperty("treetagger_folder");
+		final String TREETAGGER_FOLDER = prop.getProperty("treetagger_folder");
 		
-		return DESCRIPTIONS_FOLDER;
+		return TREETAGGER_FOLDER;
 	}
 	
 }
