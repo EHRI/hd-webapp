@@ -14,7 +14,7 @@ public class EnglishTokenizer {
 
 	public List<String> tokenize(String toTokenize) {
 		toTokenize = toTokenize.replace("'", " '");
-		// System.out.println(toTokenize);
+		
 		List<String> tokens = new ArrayList<String>();
 		BreakIterator bi = BreakIterator.getWordInstance();
 		bi.setText(toTokenize);
@@ -31,9 +31,7 @@ public class EnglishTokenizer {
 			tokens.add(toTokenize.substring(end));
 		}
 
-		for (int i = 0; i < tokens.size(); i++) {
-			// System.out.println(tokens.get(i));
-		}
+
 		String tokenlist = AuxiliaryMethods.listToString(tokens);
 		tokenlist = tokenlist.replace("' s ", "'s ");
 		tokenlist = tokenlist.replace("' ll ", "'ll ");
