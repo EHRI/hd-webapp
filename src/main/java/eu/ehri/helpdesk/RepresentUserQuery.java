@@ -2,8 +2,6 @@ package eu.ehri.helpdesk;
 
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 public class RepresentUserQuery {
 	// Term frequency of user query
@@ -30,12 +28,6 @@ public class RepresentUserQuery {
 			
 			termFrequency.put(key, frequency);
 			//System.out.println("FREQUENCY " + key + "\t" + value + "\t" + lengthQuery + "\t" + frequency);
-		}
-
-		Iterator it = termFrequency.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry pairs = (Map.Entry) it.next();
-			//System.out.println(pairs.getKey() + "  " + pairs.getValue());
 		}
 
 		return termFrequency;
