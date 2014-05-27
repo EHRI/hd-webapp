@@ -25,7 +25,7 @@
      
 </form:form>
 
-<p><B><h3>Results</h3></B></p>
+<p><B>Results</B></p>
 
 
 <c:forEach items="${queryresults}" var="queryresult"> 
