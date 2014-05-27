@@ -41,6 +41,7 @@ public class ComputeFeatureOccurrences {
 		InputStream is = new ByteArrayInputStream(tagged.getBytes());
 
 		XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+		@SuppressWarnings("unused")
 		XMLStreamReader xmlStreamReader = inputFactory
 				.createXMLStreamReader(is);
 
