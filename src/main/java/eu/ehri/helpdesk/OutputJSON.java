@@ -15,7 +15,7 @@ public class OutputJSON {
 		JSONArray orderedList = new JSONArray();
 		
 		for (int i = 0; i < relevancerank.size(); i++){
-			String institution = relevancerank.get(i);
+			String institution = relevancerank.get(i).split("\t-->\t")[0];
 			
 			orderedList.put(institution);
 		}

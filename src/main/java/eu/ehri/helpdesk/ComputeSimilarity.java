@@ -92,7 +92,7 @@ public class ComputeSimilarity {
 
 		List<String> relevance = new ArrayList<String>();
 		for (String key : newHashMap.keySet()) {
-			String item = key + " --> "
+			String item = key + "	-->	"
 					+ institutionsRelevance.get(key).toString();
 			relevance.add(item);
 		}
