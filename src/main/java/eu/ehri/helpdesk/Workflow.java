@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.annolab.tt4j.TreeTaggerException;
+import javax.xml.stream.XMLStreamException;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,22 +16,14 @@ public class Workflow {
 		return userinput;
 	}
 
-	public List<String> processQuery(GetInput input) throws IOException,
-			TreeTaggerException {
+	public List<String> processQuery(GetInput input) throws IOException, XMLStreamException {
 
-		/*
-		 * 1 - tokenize input 2 - POS tagging 3 - create vector of features 4 -
-		 * compute symilarity
-		 */
-		EnglishTokenizer tokenizeInput = new EnglishTokenizer();
-		List<String> tokens = tokenizeInput.tokenize(input.getInput());
-
-		PartOfSpeechTagging annotatePOS = new PartOfSpeechTagging();
-		List<String> tagged = annotatePOS.annotatePOSpeech(tokens);
+		String processedText = NLPProcessing.processMessage(input.getInput());
+		
 
 		ComputeFeatureOccurrences compOccurrences = new ComputeFeatureOccurrences();
 		HashMap<String, Integer> featureOcurrences = compOccurrences
-				.computeFeatOccurrences(tagged);
+				.computeFeatOccurrences(processedText);
 
 		RepresentUserQuery userQuery = new RepresentUserQuery();
 		HashMap<String, Double> userQueryTF = userQuery
@@ -42,4 +36,12 @@ public class Workflow {
 		return similarity;
 	}
 
+	
+	public JSONObject outputJSON(GetInput input) throws JSONException, IOException, XMLStreamException{
+		
+		JSONObject jsonresult = OutputJSON.produceJSONoutput(processQuery(input));
+		
+		return jsonresult;		
+	}
+	
 }
