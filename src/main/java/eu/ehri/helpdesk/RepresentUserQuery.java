@@ -24,7 +24,7 @@ public class RepresentUserQuery {
 			double max = (double) Collections.max(termOccurrence.values());
 			
 			//double frequency = value / lengthQuery;
-			double frequency = value / max;
+			double frequency =  value / max;
 			
 			termFrequency.put(key, frequency);
 			//System.out.println("FREQUENCY " + key + "\t" + value + "\t" + lengthQuery + "\t" + frequency);
