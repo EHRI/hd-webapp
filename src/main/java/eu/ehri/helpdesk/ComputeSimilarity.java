@@ -18,8 +18,9 @@ public class ComputeSimilarity {
 			"/Model/yadvashem.tfidf");
 	InputStream jewishmuseumprag = getClass().getResourceAsStream(
 			"/Model/jewishmuseumprag.tfidf");
-//	InputStream bundesarchiv = getClass().getResourceAsStream("/Model/bundesarchiv.tfidf");
-//	InputStream ushmm = getClass().getResourceAsStream("/Model/ushmm.tfidf");
+	InputStream bundesarchiv =
+	getClass().getResourceAsStream("/Model/bundesarchiv.tfidf");
+	InputStream ushmm = getClass().getResourceAsStream("/Model/ushmm.tfidf");
 
 	// List of vectors representing archives
 	List<InputStream> vectors = new ArrayList<InputStream>();
@@ -31,8 +32,8 @@ public class ComputeSimilarity {
 		vectors.add(yadvashem);
 		vectors.add(wiener);
 		vectors.add(jewishmuseumprag);
-//		vectors.add(bundesarchiv);
-//		vectors.add(ushmm);
+		vectors.add(bundesarchiv);
+		vectors.add(ushmm);
 
 		HashMap<String, Double> institutionsRelevance = new HashMap<String, Double>();
 
@@ -64,7 +65,7 @@ public class ComputeSimilarity {
 			System.out
 					.println(vectors.get(i).toString() + " --> " + similarity);
 
-			if (similarity > 0.008) {
+			if (similarity > 0.005) {
 				if (vectors.get(i).equals(yadvashem)) {
 					institutionsRelevance.put("Yad Vashem", similarity);
 				}
@@ -77,12 +78,12 @@ public class ComputeSimilarity {
 				if (vectors.get(i).equals(jewishmuseumprag)) {
 					institutionsRelevance.put("Jewish Museum Prag", similarity);
 				}
-//				if (vectors.get(i).equals(bundesarchiv)) {
-//					institutionsRelevance.put("Bundesarchiv", similarity);
-//				}
-//				if (vectors.get(i).equals(ushmm)) {
-//					institutionsRelevance.put("USHMM", similarity);
-//				}
+				if (vectors.get(i).equals(bundesarchiv)) {
+				institutionsRelevance.put("Bundesarchiv", similarity);
+				}
+				if (vectors.get(i).equals(ushmm)) {
+				institutionsRelevance.put("USHMM", similarity);
+				 }
 			}
 		}
 
@@ -91,13 +92,27 @@ public class ComputeSimilarity {
 		AuxiliaryMethods.sortByValue(institutionsRelevance);
 
 		List<String> relevance = new ArrayList<String>();
+		List<String> ranking = new ArrayList<String>();
+
 		for (String key : newHashMap.keySet()) {
 			String item = key + "	-->	"
 					+ institutionsRelevance.get(key).toString();
 			relevance.add(item);
 		}
 
-		return relevance;
+		if (relevance.size() == 0) {
+			ranking.add("No relevant institution found. Please reformulate your query and add more details.");
+		} else {
+			if (relevance.size() > 0 && relevance.size() <= 3) {
+				ranking = relevance;
+			} else {
+				for (int i = 0; i < 3; i++) {
+					ranking.add(relevance.get(i));
+				}
+			}
+		}
+
+		return ranking;
 
 	}
 }
