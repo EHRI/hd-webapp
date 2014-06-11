@@ -34,20 +34,20 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! the client locale is " + locale.toString());
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
-
-		model.addAttribute("serverTime", formattedDate);
-
-		return "home";
-	}
+//	@RequestMapping(value = "/", method = RequestMethod.GET)
+//	public String home(Locale locale, Model model) {
+//		logger.info("Welcome home! the client locale is " + locale.toString());
+//
+//		Date date = new Date();
+//		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
+//				DateFormat.LONG, locale);
+//
+//		String formattedDate = dateFormat.format(date);
+//
+//		model.addAttribute("serverTime", formattedDate);
+//
+//		return "home";
+//	}
 
 	// controler for user query
 	@RequestMapping(value = "/response", method = RequestMethod.GET)
@@ -102,7 +102,7 @@ public class HomeController {
 		return response;
 	}
 	
-	@RequestMapping("/ask")
+	@RequestMapping("/")
 	public ModelAndView showQuery() {
 		System.out.println("HELPDESK ACTIVATED");
 		return new ModelAndView("input", "command", new GetInput());

@@ -18,9 +18,10 @@ public class ComputeSimilarity {
 			"/Model/yadvashem.tfidf");
 	InputStream jewishmuseumprag = getClass().getResourceAsStream(
 			"/Model/jewishmuseumprag.tfidf");
-	InputStream bundesarchiv =
-	getClass().getResourceAsStream("/Model/bundesarchiv.tfidf");
+	InputStream bundesarchiv = getClass().getResourceAsStream(
+			"/Model/bundesarchiv.tfidf");
 	InputStream ushmm = getClass().getResourceAsStream("/Model/ushmm.tfidf");
+	InputStream its = getClass().getResourceAsStream("/Model/its.tfidf");
 
 	// List of vectors representing archives
 	List<InputStream> vectors = new ArrayList<InputStream>();
@@ -34,6 +35,7 @@ public class ComputeSimilarity {
 		vectors.add(jewishmuseumprag);
 		vectors.add(bundesarchiv);
 		vectors.add(ushmm);
+		vectors.add(its);
 
 		HashMap<String, Double> institutionsRelevance = new HashMap<String, Double>();
 
@@ -79,11 +81,14 @@ public class ComputeSimilarity {
 					institutionsRelevance.put("Jewish Museum Prag", similarity);
 				}
 				if (vectors.get(i).equals(bundesarchiv)) {
-				institutionsRelevance.put("Bundesarchiv", similarity);
+					institutionsRelevance.put("Bundesarchiv", similarity);
 				}
 				if (vectors.get(i).equals(ushmm)) {
-				institutionsRelevance.put("USHMM", similarity);
-				 }
+					institutionsRelevance.put("USHMM", similarity);
+				}
+				if (vectors.get(i).equals(its)) {
+					institutionsRelevance.put("International Tracing Service", similarity);
+				}
 			}
 		}
 
