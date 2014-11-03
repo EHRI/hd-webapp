@@ -14,10 +14,22 @@ public class OutputJSON {
 		JSONObject response = new JSONObject();
 		JSONArray orderedList = new JSONArray();
 		
+		
+		//create new JSONArray containing
+		//ehri ID, name of institution, relevance
+		
 		for (int i = 0; i < relevancerank.size(); i++){
 			String institution = relevancerank.get(i).split("\t-->\t")[0];
+			JSONObject archive = new JSONObject();
+			String score = relevancerank.get(i).split("\t-->\t")[1];
+			String id = IDOfInstitutions.consultDataOfInstitution(relevancerank.get(i).split("\t-->\t")[0]);
+
 			
-			orderedList.put(institution);
+			archive.put("id", id);
+			archive.put("name", institution);
+			archive.put("score", score);
+					
+			orderedList.put(archive);
 		}
 	
 		response.put("response", orderedList);
