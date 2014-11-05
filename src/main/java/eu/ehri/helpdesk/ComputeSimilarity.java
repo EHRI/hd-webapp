@@ -22,6 +22,8 @@ public class ComputeSimilarity {
 			"/Model/bundesarchiv.tfidf");
 	InputStream ushmm = getClass().getResourceAsStream("/Model/ushmm.tfidf");
 	InputStream its = getClass().getResourceAsStream("/Model/its.tfidf");
+	InputStream ifz = getClass().getResourceAsStream("/Model/cegesoma.tfidf");
+	InputStream cegesoma = getClass().getResourceAsStream("/Model/cegesoma.tfidf");
 
 	// List of vectors representing archives
 	List<InputStream> vectors = new ArrayList<InputStream>();
@@ -36,6 +38,8 @@ public class ComputeSimilarity {
 		vectors.add(bundesarchiv);
 		vectors.add(ushmm);
 		vectors.add(its);
+		vectors.add(ifz);
+		vectors.add(cegesoma);
 
 		HashMap<String, Double> institutionsRelevance = new HashMap<String, Double>();
 
@@ -78,16 +82,22 @@ public class ComputeSimilarity {
 					institutionsRelevance.put("Wiener Library", similarity);
 				}
 				if (vectors.get(i).equals(jewishmuseumprag)) {
-					institutionsRelevance.put("Jewish Museum Prag", similarity);
+					institutionsRelevance.put("Jewish Museum in Prague", similarity);
 				}
 				if (vectors.get(i).equals(bundesarchiv)) {
 					institutionsRelevance.put("Bundesarchiv", similarity);
 				}
 				if (vectors.get(i).equals(ushmm)) {
-					institutionsRelevance.put("USHMM", similarity);
+					institutionsRelevance.put("United States Holocaust Memorial Museum", similarity);
 				}
 				if (vectors.get(i).equals(its)) {
 					institutionsRelevance.put("International Tracing Service", similarity);
+				}
+				if (vectors.get(i).equals(ifz)) {
+					institutionsRelevance.put("Institut für Zeitgeschichte Munich", similarity);
+				}
+				if (vectors.get(i).equals(cegesoma)) {
+					institutionsRelevance.put("CEGESOMA", similarity);
 				}
 			}
 		}
