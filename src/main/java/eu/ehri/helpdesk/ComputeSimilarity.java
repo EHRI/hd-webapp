@@ -22,7 +22,7 @@ public class ComputeSimilarity {
 			"/Model/bundesarchiv.tfidf");
 	InputStream ushmm = getClass().getResourceAsStream("/Model/ushmm.tfidf");
 	InputStream its = getClass().getResourceAsStream("/Model/its.tfidf");
-	InputStream ifz = getClass().getResourceAsStream("/Model/cegesoma.tfidf");
+	InputStream ifz = getClass().getResourceAsStream("/Model/ifz.tfidf");
 	InputStream cegesoma = getClass().getResourceAsStream("/Model/cegesoma.tfidf");
 
 	// List of vectors representing archives

@@ -56,7 +56,7 @@ public class ComputeFeatureOccurrences {
 				if (event.asStartElement().getName().getLocalPart()
 						.equals("lemma")) {
 					event = xmlEventReader.nextEvent();
-					String lemma = event.asCharacters().getData().toString();
+					String lemma = event.asCharacters().getData().toString().toLowerCase();
 					if (featuresList.contains(lemma)) {
 						keywords.add(lemma);
 					}
@@ -67,11 +67,6 @@ public class ComputeFeatureOccurrences {
 		}
 
 		HashMap<String, Integer> featureOccurrence = new HashMap<String, Integer>();
-
-		// TO DO
-		// Implement here synonyms dictionary used for feature extraction from
-		// data
-		// during model building
 
 		for (int i = 0; i < keywords.size(); i++) {
 			if (featureOccurrence.containsKey(keywords.get(i))) {

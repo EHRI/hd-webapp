@@ -8,33 +8,38 @@ import org.json.JSONObject;
 
 public class OutputJSON {
 
-	
-	public static JSONObject produceJSONoutput (List<String> relevancerank) throws JSONException{
-		
+	public static JSONObject produceJSONoutput(List<String> relevancerank)
+			throws JSONException {
+
 		JSONObject response = new JSONObject();
 		JSONArray orderedList = new JSONArray();
-		
-		
-		//create new JSONArray containing
-		//ehri ID, name of institution, relevance
-		
-		for (int i = 0; i < relevancerank.size(); i++){
-			String institution = relevancerank.get(i).split("\t-->\t")[0];
-			JSONObject archive = new JSONObject();
-			String score = relevancerank.get(i).split("\t-->\t")[1];
-			String id = IDOfInstitutions.consultDataOfInstitution(relevancerank.get(i).split("\t-->\t")[0]);
 
+		// create new JSONArray containing
+		// ehri ID, name of institution, relevance
+		if (relevancerank
+				.get(0)
+				.equals("No relevant institution found. Please reformulate your query and add more details.")) {
+			response.put("response", orderedList);
+		} else {
 			
-			archive.put("id", id);
-			archive.put("name", institution);
-			archive.put("score", score);
-					
-			orderedList.put(archive);
+			for (int i = 0; i < relevancerank.size(); i++) {
+				String institution = relevancerank.get(i).split("\t-->\t")[0];
+				JSONObject archive = new JSONObject();
+				String score = relevancerank.get(i).split("\t-->\t")[1];
+				String id = IDOfInstitutions
+						.consultDataOfInstitution(relevancerank.get(i).split(
+								"\t-->\t")[0]);
+
+				archive.put("id", id);
+				archive.put("name", institution);
+				archive.put("score", score);
+
+				orderedList.put(archive);
+			}
+
+			response.put("response", orderedList);
 		}
-	
-		response.put("response", orderedList);
-		
 		return response;
 	}
-	
+
 }
