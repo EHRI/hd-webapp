@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/EHRI/hd-webapp.svg?branch=master)](https://travis-ci.org/EHRI/hd-webapp)
+
+
 EHRI Helpdesk Service
 =========
 
