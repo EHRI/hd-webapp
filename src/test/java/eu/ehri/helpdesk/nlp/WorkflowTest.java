@@ -22,4 +22,10 @@ public class WorkflowTest {
         assertNotNull(scores.get("gb-003348"));
         assertNotNull(scores.get("de-002624"));
     }
+
+    @Test
+    public void testProcessQuery3() throws Exception {
+        Map<String, Double> scores = Workflow.processQuery("BLIBIIDISYUE", Helpers.getInstitutions().keySet());
+        assertTrue(scores.isEmpty());
+    }
 }
